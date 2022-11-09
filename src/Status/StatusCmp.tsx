@@ -11,7 +11,8 @@ const StatusCmp: React.FC<StatusCmpProps> = observer(
     const { statusStore, mapStore } = useStores();
 
     useEffect(() => {
-      statusStore.statusMessage = `Status ${Math.random()}`;
+      statusStore.changeCounter++;
+      statusStore.statusMessage = `Center changed ${statusStore.changeCounter} times.`;
     }, [statusStore, mapStore.center]);
 
     return (
