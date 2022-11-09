@@ -1,15 +1,18 @@
 import { makeObservable } from "mobx";
 import AppStore from "./AppStore";
 import MapStore from "../Map/MapStore";
+import StatusStore from "../Status/StatusStore";
 
 export interface IStores {
   appStore: AppStore;
   mapStore: MapStore;
+  statusStore: StatusStore;
 }
 
 export class Stores implements IStores {
   appStore: AppStore;
   mapStore: MapStore;
+  statusStore: StatusStore;
 
   static instance: IStores;
 
@@ -27,5 +30,6 @@ export class Stores implements IStores {
     // initialize all stores in correct order
     this.appStore = new AppStore();
     this.mapStore = new MapStore(this.appStore);
+    this.statusStore = new StatusStore(this.appStore);
   }
 }
