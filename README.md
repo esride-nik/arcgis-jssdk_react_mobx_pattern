@@ -1,4 +1,21 @@
-# Getting Started with Create React App
+# Minimalistic ArcGIS JSAPI Map with React
+
+There is a basic difference between the class-based Esri Map and the component-based UI framework React.
+
+| Esri Map Class | React Component | |
+| --- | --- | --- |
+| <img src="assets/brooke-cagle-Ntm4C2lCWxQ-unsplash.jpg" height="300px"> | <img src="assets/timo-volz-ZlFKIG6dApg-unsplash.jpg" height="300px"> | <small>Dog photo by <a href="https://unsplash.com/@brookecagle?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Brooke Cagle</a>, <br/>cat photo by <a href="https://unsplash.com/@magict1911?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Timo Volz</a> <br/>on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></small> |
+| <b>OMG you initialized me! <br/>Can I render now, master?</b> |<b>I'll render whenever it suits me, human.</b> | |
+
+---
+
+The point of this repo is to show our pattern of de-coupling the imperative Esri Map object from the rest of the component-based application. 
+* We're using MobX stores for state management throughout the application and React hooks and providers to bring them into the components.
+* The class-based Map gets a Controller for initialization and interoperability functions. The controller is as well distributed via React hook and provider.
+
+
+---
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
