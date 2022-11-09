@@ -1,12 +1,16 @@
-import React from "react";
-import logo from "./logo.svg";
+// import React from "react";
+// import logo from "./logo.svg";
 import "./App.css";
-import Map from "./Map/Map";
+// import Map from "./Map/Map";
+import MapCmp from "./Map/MapCmp";
 
 function App() {
   return (
     <div className="App">
-      <Map></Map>
+      <MapCmp></MapCmp>
+
+      {/* <Map></Map> */}
+
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
