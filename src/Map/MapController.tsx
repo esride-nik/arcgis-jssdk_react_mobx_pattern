@@ -18,20 +18,6 @@ export default class MapController {
   mapNode = React.createRef<HTMLDivElement>();
 
   initMap = (): void => {
-    // // Only JSON Format for Queries
-    // const jsonResponse:__esri.RequestInterceptor = {
-    //     after: (response: any) => {
-    //         if (response?.data?.supportedQueryFormats !== null && response?.data?.supportedQueryFormats !== undefined) {
-    //             response.data.supportedQueryFormats = 'JSON';
-    //         }
-    //     },
-    // };
-    // if (esriConfig.request.interceptors) {
-    //     esriConfig.request.interceptors.push(jsonResponse);
-    // } else {
-    //     esriConfig.request.interceptors = [jsonResponse];
-    // }
-
     console.debug("init Map", this);
     this.map = new Map({
       basemap: this.stores.mapStore.basemap,
