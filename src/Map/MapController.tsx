@@ -5,7 +5,7 @@ import * as React from "react";
 import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
 
 // import { reaction } from "mobx";
-import { Stores } from "../Stores";
+import { Stores } from "../Stores/Stores";
 
 export default class MapController {
   private readonly stores = Stores.getInstance();
