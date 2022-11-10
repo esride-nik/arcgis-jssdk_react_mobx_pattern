@@ -2,6 +2,7 @@ import { makeObservable } from "mobx";
 import AppStore from "./AppStore";
 import MapStore from "../Map/MapStore";
 import StatusStore from "../Status/StatusStore";
+import { Config } from "../Config/types/config";
 
 export interface IStores {
   appStore: AppStore;
@@ -17,18 +18,22 @@ export class Stores implements IStores {
   static instance: IStores;
 
   // Singleton pattern: getInstance and private constructor
-  static getInstance(): IStores {
+  static getInstance(config: Config | undefined = undefined): IStores {
     if (Stores.instance === undefined) {
-      Stores.instance = new Stores();
+      if (config !== undefined) {
+        Stores.instance = new Stores(config);
+      } else {
+        throw new Error(`Need configuration to initialize stores.`);
+      }
     }
     return Stores.instance;
   }
 
-  private constructor() {
+  constructor(config: Config) {
     makeObservable(this, {});
 
     // initialize all stores in correct order
-    this.appStore = new AppStore();
+    this.appStore = new AppStore(config);
     this.mapStore = new MapStore(this.appStore);
     this.statusStore = new StatusStore(this.appStore);
   }

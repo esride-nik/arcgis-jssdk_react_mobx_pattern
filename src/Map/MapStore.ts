@@ -8,8 +8,6 @@ class MapStore {
   private readonly appStore: AppStore;
   public mapView?: MapView = undefined;
   public center: Point;
-  public scale: number;
-  public rotation: number;
   public basemap: string;
   public layers: Layer[] = [];
 
@@ -19,14 +17,14 @@ class MapStore {
 
   constructor(appStore: AppStore) {
     this.appStore = appStore;
-    // this.center = new Point(this.appStore.config.map.init.center);
-    // this.scale = this.appStore.config.map.init.scale;
-    // this.rotation = this.appStore.config.map.init.rotation;
-    // this.basemap = this.appStore.config.map.basemap;
-    this.center = new Point();
-    this.scale = 0;
-    this.rotation = 0;
-    this.basemap = "streets-vector";
+    this.center = new Point({
+      x: this.appStore.config.initialMapCenter[0],
+      y: this.appStore.config.initialMapCenter[1],
+      spatialReference: {
+        wkid: this.appStore.config.wkid,
+      },
+    });
+    this.basemap = this.appStore.config.basemap;
 
     makeObservable(this, {
       center: observable,

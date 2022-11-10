@@ -15,8 +15,6 @@ const MapCmp: React.FC<MapCmpProps> = (props: MapCmpProps) => {
   // map must be initialized after first render, because we need the DOM node ref
   useEffect(mapContext.initMap, []);
 
-  console.log(mapStore.center);
-
   return <div ref={mapContext.mapNode} id="map" />;
 };
 

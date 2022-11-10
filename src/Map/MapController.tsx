@@ -8,7 +8,12 @@ import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
 import { Stores } from "../Stores/Stores";
 
 export default class MapController {
-  private readonly stores = Stores.getInstance();
+  private stores: Stores | undefined;
+
+  setStores = (stores: Stores): void => {
+    this.stores = stores;
+  };
+
   private readonly graphicsLayer: GraphicsLayer = new GraphicsLayer({
     listMode: "hide",
   });
@@ -20,28 +25,26 @@ export default class MapController {
   initMap = (): void => {
     console.debug("init Map", this);
     this.map = new Map({
-      basemap: this.stores.mapStore.basemap,
+      basemap: this.stores?.mapStore.basemap,
     });
 
     const mapView = new MapView({
       map: this.map,
       container: this.mapNode.current ?? undefined,
-      center: this.stores.mapStore.center,
-      scale: this.stores.mapStore.scale,
-      rotation: this.stores.mapStore.rotation,
+      center: this.stores?.mapStore.center,
       ui: { components: [] },
     });
 
     mapView.when((v: MapView) => {
-      this.stores.mapStore.setMapView(v);
+      this.stores?.mapStore.setMapView(v);
       v.watch("center", (center: Point) => {
-        this.stores.mapStore.setCenter(center);
+        this.stores?.mapStore.setCenter(center);
       });
       v.map.add(this.graphicsLayer);
     });
 
     // reaction(
-    //   () => this.stores.mapStore.layers,
+    //   () => this.stores?.mapStore.layers,
     //   () => {
     //     this.initLayers();
     //   }

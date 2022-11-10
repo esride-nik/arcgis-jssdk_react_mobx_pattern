@@ -1,0 +1,8 @@
+{
+  "wkid": 102100,
+  "initialMapCenter": [586851.55, 5656814.75],
+  "initialMapZoom": 7,
+  "minScale": 5750000.0,
+  "maxScale": 1000.0,
+  "basemap": "streets-vector"
+}

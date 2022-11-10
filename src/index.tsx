@@ -4,17 +4,24 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { StoreProvider } from "./Stores/StoreProvider";
+import { getConfiguration } from "./Config/configuration";
+import { Config } from "./Config/types/config";
 
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
-);
-root.render(
-  <StoreProvider>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </StoreProvider>
-);
+let configuration: any = undefined;
+(async () => {
+  configuration = await getConfiguration();
+
+  const root = ReactDOM.createRoot(
+    document.getElementById("root") as HTMLElement
+  );
+  root.render(
+    <StoreProvider config={configuration}>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </StoreProvider>
+  );
+})();
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
