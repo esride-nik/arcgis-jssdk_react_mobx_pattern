@@ -27,6 +27,7 @@ export default class MapController {
   });
 
   public map!: Map;
+  public mapView!: MapView;
 
   mapNode = React.createRef<HTMLDivElement>();
 
@@ -43,19 +44,25 @@ export default class MapController {
           id: this.config.webMapItemId,
         },
       });
+      this.mapView = new MapView({
+        map: this.map,
+        container: this.mapNode.current ?? undefined,
+        ui: { components: [] },
+      });
     } else {
       this.map = new Map({
-        basemap: this.mapStore.basemap,
+        basemap: this.config.basemap,
+      });
+      this.mapView = new MapView({
+        map: this.map,
+        container: this.mapNode.current ?? undefined,
+        center: this.config.initialMapCenter,
+        zoom: this.config.initialMapZoom,
+        ui: { components: [] },
       });
     }
 
-    const mapView = new MapView({
-      map: this.map,
-      container: this.mapNode.current ?? undefined,
-      ui: { components: [] },
-    });
-
-    mapView.when((v: MapView) => {
+    this.mapView.when((v: MapView) => {
       this.mapStore.setMapView(v);
       v.watch("center", (center: Point) => {
         this.mapStore.setCenter(center);
