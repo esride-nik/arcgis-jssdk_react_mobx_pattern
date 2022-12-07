@@ -17,18 +17,6 @@ export class Stores implements IStores {
 
   static instance: IStores;
 
-  // Singleton pattern: getInstance and private constructor
-  static getInstance(config: Config | undefined = undefined): IStores {
-    if (Stores.instance === undefined) {
-      if (config !== undefined) {
-        Stores.instance = new Stores(config);
-      } else {
-        throw new Error(`Need configuration to initialize stores.`);
-      }
-    }
-    return Stores.instance;
-  }
-
   constructor(config: Config) {
     makeObservable(this, {});
 
