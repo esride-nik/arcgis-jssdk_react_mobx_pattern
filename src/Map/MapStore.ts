@@ -23,7 +23,6 @@ class MapStore {
     });
 
     makeObservable(this, {
-      center: observable,
       mapView: observable,
       layerVisibility: observable,
       setMapView: action,
