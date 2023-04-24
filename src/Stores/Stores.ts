@@ -15,8 +15,6 @@ export class Stores implements IStores {
   mapStore: MapStore;
   statusStore: StatusStore;
 
-  static instance: IStores;
-
   constructor(config: Config) {
     makeObservable(this, {});
 

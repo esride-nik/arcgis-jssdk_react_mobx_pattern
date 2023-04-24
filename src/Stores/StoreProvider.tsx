@@ -13,8 +13,6 @@ export const StoreProvider: React.FC<StoreProviderProps> = ({
   children,
   config,
 }) => {
-  // const stores = Stores.getInstance(config);
-
   const stores = React.useMemo(() => {
     const result = new Stores(config);
     return result;

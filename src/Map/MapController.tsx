@@ -69,13 +69,6 @@ export default class MapController {
       });
       v.map.add(this.graphicsLayer);
     });
-
-    // reaction(
-    //   () => this.mapStore.layers,
-    //   () => {
-    //     this.initLayers();
-    //   }
-    // );
   };
 
   public readonly getGraphicsLayer = (): GraphicsLayer => {
