@@ -1,4 +1,3 @@
-import Point from "@arcgis/core/geometry/Point";
 import Map from "@arcgis/core/Map";
 import WebMap from "@arcgis/core/WebMap";
 import MapView from "@arcgis/core/views/MapView";
@@ -64,9 +63,6 @@ export default class MapController {
 
     this.mapView.when((v: MapView) => {
       this.mapStore.setMapView(v);
-      v.watch("center", (center: Point) => {
-        this.mapStore.setCenter(center);
-      });
       v.map.add(this.graphicsLayer);
     });
   };

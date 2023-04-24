@@ -8,7 +8,7 @@ interface StatusCmpProps {}
 
 const StatusCmp: React.FC<StatusCmpProps> = observer(
   (props: StatusCmpProps) => {
-    const { statusStore, mapStore } = useStores();
+    const { statusStore } = useStores();
 
     useEffect(() => {
       statusStore.setChangeCounter(statusStore.changeCounter + 1);
@@ -18,7 +18,6 @@ const StatusCmp: React.FC<StatusCmpProps> = observer(
     return (
       <div id="status">
         <span>{statusStore.statusMessage}</span>
-        <span>{mapStore.center.x.toFixed(7)} | {mapStore.center.y.toFixed(7)}</span>
       </div>
     );
   }
