@@ -13,7 +13,7 @@ const StatusCmp: React.FC<StatusCmpProps> = observer(
     useEffect(() => {
       statusStore.setChangeCounter(statusStore.changeCounter + 1);
       statusStore.setStatusMessage(`Center changed ${statusStore.changeCounter} times.`);
-    }, [statusStore, mapStore.center]);
+    }, [statusStore]);
 
     return (
       <div id="status">
