@@ -1,4 +1,4 @@
-import { makeObservable, observable } from "mobx";
+import { action, makeObservable, observable } from "mobx";
 import AppStore from "../Stores/AppStore";
 
 class StatusStore {
@@ -11,7 +11,15 @@ class StatusStore {
     makeObservable(this, {
       statusMessage: observable,
       changeCounter: observable,
+      setStatusMessage: action,
+      setChangeCounter: action
     });
+  }
+  setStatusMessage(s: string) {
+    this.statusMessage = s;
+  }
+  setChangeCounter(c: number) {
+    this.changeCounter = c;
   }
 }
 
