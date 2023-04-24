@@ -1,3 +1,20 @@
+#### <i>Esri Services Enablement Workshop 2023​</i>
+### Sam Matenaer · Niklas Köhn
+# React and the ​ArcGIS Maps SDK for JavaScript​
+
+## Task Group 1
+
+Update the code so the ``StatusCmp`` displays the center point of the map and updates as it changes when moving the map.
+
+### Hints
+* ``MapController`` is the class initializing Map and MapView. Use JSSDK methods here to get the data and bring it into stage mgmt.
+* ``MapProvider`` and ``useMapContext`` are the context provider and hook to provide other parts of your application programmatic access to your map. You don't need to touch these for this task.
+* ``MapStore`` is the state mgmt class for your map. It's being initialized in the central ``Stores.ts``, which can be consumed in any component by using the ``useStores`` hook.
+
+---
+---
+---
+
 # Minimalistic ArcGIS JSAPI Map with React
 
 There is a basic difference between the class-based Esri Map and the component-based UI framework React.
