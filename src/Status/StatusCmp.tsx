@@ -17,10 +17,8 @@ const StatusCmp: React.FC<StatusCmpProps> = observer(
 
     return (
       <div id="status">
-        <p>{statusStore.statusMessage}</p>
-        <p>
-          {mapStore.center.x} / {mapStore.center.y}
-        </p>
+        <span>{statusStore.statusMessage}</span>
+        <span>{mapStore.center.x.toFixed(7)} | {mapStore.center.y.toFixed(7)}</span>
       </div>
     );
   }
