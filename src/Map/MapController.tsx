@@ -4,7 +4,6 @@ import MapView from "@arcgis/core/views/MapView";
 import * as React from "react";
 import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
 
-// import { reaction } from "mobx";
 import { Stores } from "../Stores/Stores";
 import MapStore from "./MapStore";
 import { Config } from "Config/types/config";

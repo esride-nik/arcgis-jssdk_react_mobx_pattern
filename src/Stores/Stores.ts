@@ -20,7 +20,7 @@ export class Stores implements IStores {
 
     // initialize all stores in correct order
     this.appStore = new AppStore(config);
-    this.mapStore = new MapStore(this.appStore);
-    this.statusStore = new StatusStore(this.appStore);
+    this.mapStore = new MapStore();
+    this.statusStore = new StatusStore();
   }
 }
