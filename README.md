@@ -12,10 +12,10 @@ Update the code so the ``StatusCmp`` displays the center point of the map and up
 ### Hints
 * ``src/Map`` folder:
   * ``MapController`` is the class initializing WebMap and MapView. Look for the code block that ensures that MapView is initialized. Use JSSDK methods in it to watch for the right data and bring it into stage mgmt.
-  * ``MapStore`` is the state mgmt class for your map. It can be consumed in any component by using the ``useStores`` hook. In your non-React class ``MapController``, state is available as class variables.
+  * ``MapStore`` is the state mgmt class for your map. A class variable for the center point as well as a setter function have already been prepared for you. You don't need to change anything here, but use them wisely!
   * ``MapProvider`` and ``useMapContext`` are the context provider and hook to provide programmatic access to your map to other parts of your application. You don't need to touch these for this task.
 * ``src/Status`` folder:
-  * The ``StatusCmp`` already uses another hook to display data out of its own store and update some properties. Be inspired!
+  * ``StatusCmp`` is the place to display your data. The ``useStores`` hook will give you access to the MapStore. 
 
 --- 
 
