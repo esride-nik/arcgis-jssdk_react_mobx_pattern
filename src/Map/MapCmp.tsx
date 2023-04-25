@@ -1,3 +1,7 @@
+// ===================================================================
+// For the purpose of the exercise, don't change anything in this file
+// ===================================================================
+
 import * as React from "react";
 import { useEffect } from "react";
 import { useMapContext } from "./useMapContext";

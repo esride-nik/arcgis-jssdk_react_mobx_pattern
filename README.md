@@ -2,7 +2,7 @@
 ### Sam Matenaer · Niklas Köhn
 # React and the ​ArcGIS Maps SDK for JavaScript​
 
-## Group 1 · Task 1
+## Group 1 Task
 
 Update the code so the ``StatusCmp`` displays the center point of the map and updates as it changes when moving the map.
 
@@ -10,10 +10,12 @@ Update the code so the ``StatusCmp`` displays the center point of the map and up
 * The ``StatusCmp`` already uses another hook to display data out of its own store.. but it looks kinda sad. It's not updating! What can you do to actually update?
   
 ### Hints
-* ``MapController`` is the class initializing Map and MapView. Use JSSDK methods here to get the data and bring it into stage mgmt.
-* ``MapProvider`` and ``useMapContext`` are the context provider and hook to provide programmatic access to your map to other parts of your application. You don't need to touch these for this task.
-* ``MapStore`` is the state mgmt class for your map. It's being initialized in the central ``Stores.ts``, which can be consumed in any component by using the ``useStores`` hook. Please note that you cannot use hooks in your non-React class ``MapController``, but state mgmt is also available.
-* The ``StatusCmp`` already uses another hook to display data out of its own store and update some properties. Be inspired!
+* ``src/Map`` folder:
+  * ``MapController`` is the class initializing WebMap and MapView. Look for the code block that ensures that MapView is initialized. Use JSSDK methods in it to watch for the right data and bring it into stage mgmt.
+  * ``MapStore`` is the state mgmt class for your map. It can be consumed in any component by using the ``useStores`` hook. In your non-React class ``MapController``, state is available as class variables.
+  * ``MapProvider`` and ``useMapContext`` are the context provider and hook to provide programmatic access to your map to other parts of your application. You don't need to touch these for this task.
+* ``src/Status`` folder:
+  * The ``StatusCmp`` already uses another hook to display data out of its own store and update some properties. Be inspired!
 
 --- 
 
