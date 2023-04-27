@@ -7,9 +7,9 @@ function App() {
   return (
     <div className="App">
       <MapProvider>
-        <MapCmp></MapCmp>
+        <MapCmp/>
       </MapProvider>
-      <StatusCmp></StatusCmp>
+      <StatusCmp/>
     </div>
   );
 }
