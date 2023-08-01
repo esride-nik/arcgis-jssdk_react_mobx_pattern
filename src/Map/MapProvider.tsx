@@ -1,7 +1,3 @@
-// ===================================================================
-// For the purpose of the exercise, don't change anything in this file
-// ===================================================================
-
 import * as React from "react";
 import { useStores } from "../Stores/useStores";
 import MapController from "./MapController";

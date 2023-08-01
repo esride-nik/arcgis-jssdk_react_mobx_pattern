@@ -1,4 +1,6 @@
 #map {
-  height:100vh;
-  width:100vw;
+  float: left;
+  overflow: hidden;
+  width: 50vw;
+  height: 100vh;
 }

@@ -1,5 +1,6 @@
 export interface Config {
   webMapItemId: string;
+  webSceneItemId: string;
   wkid: number;
   initialMapCenter: [number, number];
   initialMapZoom: number;
