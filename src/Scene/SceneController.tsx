@@ -1,6 +1,7 @@
 import Map from "@arcgis/core/Map";
 import WebScene from "@arcgis/core/WebScene";
 import SceneView from "@arcgis/core/views/SceneView";
+import Camera from "@arcgis/core/Camera";
 import * as React from "react";
 import { Stores } from "../Stores/Stores";
 import SceneStore from "./SceneStore";
@@ -37,7 +38,8 @@ export default class SceneController {
     });
     this.sceneView = new SceneView({
       map: this.scene,
-      container: this.sceneNode.current ?? undefined
+      container: this.sceneNode.current ?? undefined,
+      // camera: new Camera()
     });
 
     // making sure that sceneView is initialized

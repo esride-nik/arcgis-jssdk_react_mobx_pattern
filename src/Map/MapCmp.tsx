@@ -15,7 +15,9 @@ const MapCmp: React.FC<MapCmpProps> = observer((props: MapCmpProps) => {
   useEffect(mapContext.initMap, []);
 
   useEffect(() => {
-    mapContext.mapView.extent = sceneStore.extent;
+    if (sceneStore.extent.width > 0) {
+      mapContext.mapView.extent = sceneStore.extent;
+    }
   }, [mapContext.mapView, sceneStore.extent])
 
   useEffect(() => {

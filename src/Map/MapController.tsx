@@ -50,7 +50,8 @@ export default class MapController {
     // making sure that mapView is initialized
     this.mapView.when((v: MapView) => {
       this.mapStore.setMapView(v);
-      reactiveUtils.watch(() => v.center, (c) => this.mapStore.setCenter(c));
+      reactiveUtils.watch(() => v.center, (value) => this.mapStore.setCenter(value));
+      reactiveUtils.watch(() => v.rotation, (value) => this.mapStore.setRotation(value));
     });
   };
 }

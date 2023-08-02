@@ -22,6 +22,8 @@ class SceneStore {
       layerVisibility: observable,
       setSceneView: action,
       setCenter: action,
+      setExtent: action,
+      setCamera: action,
     });
   }
 
