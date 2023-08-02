@@ -1,7 +1,7 @@
 import Map from "@arcgis/core/Map";
 import WebScene from "@arcgis/core/WebScene";
 import SceneView from "@arcgis/core/views/SceneView";
-import Camera from "@arcgis/core/Camera";
+import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 import * as React from "react";
 import { Stores } from "../Stores/Stores";
 import SceneStore from "./SceneStore";
@@ -12,6 +12,7 @@ export default class SceneController {
   private stores!: Stores | undefined;
   private sceneStore!: SceneStore;
   private config!: Config;
+  private fl_arr!: FeatureLayer;
 
   // setStores needs to be called with a valid object before the rest of the class works
   setStores = (stores: Stores): void => {
@@ -39,8 +40,12 @@ export default class SceneController {
     this.sceneView = new SceneView({
       map: this.scene,
       container: this.sceneNode.current ?? undefined,
-      // camera: new Camera()
     });
+
+    this.fl_arr = new FeatureLayer({
+      url: 'https://services.arcgis.com/d3voDfTFbHOCRwVR/ArcGIS/rest/services/arrondissements_municipaux_Paris_Lyon_Marseilles_L93/FeatureServer/0'
+    })
+    this.scene.add(this.fl_arr);
 
     // making sure that sceneView is initialized
     this.sceneView.when((v: SceneView) => {
