@@ -15,8 +15,12 @@ const MapCmp: React.FC<MapCmpProps> = observer((props: MapCmpProps) => {
   useEffect(mapContext.initMap, []);
 
   useEffect(() => {
-    mapContext.mapView.center = sceneStore.center;
-  }, [sceneStore.center])
+    mapContext.mapView.extent = sceneStore.extent;
+  }, [mapContext.mapView, sceneStore.extent])
+
+  useEffect(() => {
+    mapContext.mapView.rotation = sceneStore.camera.heading;
+  }, [mapContext.mapView, sceneStore.camera.heading])
 
   return <>
     <div ref={mapContext.mapNode} id="map" />

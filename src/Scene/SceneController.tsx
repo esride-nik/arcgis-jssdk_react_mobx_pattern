@@ -44,7 +44,9 @@ export default class SceneController {
     // making sure that sceneView is initialized
     this.sceneView.when((v: SceneView) => {
       this.sceneStore.setSceneView(v);
-      reactiveUtils.watch(() => v.center, (c) => this.sceneStore.setCenter(c));
+      reactiveUtils.watch(() => v.center, (value) => this.sceneStore.setCenter(value));
+      reactiveUtils.watch(() => v.extent, (value) => this.sceneStore.setExtent(value));
+      reactiveUtils.watch(() => v.camera, (value) => this.sceneStore.setCamera(value));
     });
   };
 }
