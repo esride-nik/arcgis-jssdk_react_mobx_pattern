@@ -19,7 +19,7 @@ const MapCmp: React.FC<MapCmpProps> = observer((props: MapCmpProps) => {
   }, [mapContext.mapView, sceneStore.extent])
 
   useEffect(() => {
-    mapContext.mapView.rotation = sceneStore.camera.heading;
+    mapContext.mapView.rotation = -sceneStore.camera.heading;
   }, [mapContext.mapView, sceneStore.camera.heading])
 
   return <>

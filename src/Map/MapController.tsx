@@ -1,6 +1,7 @@
 import Map from "@arcgis/core/Map";
 import WebMap from "@arcgis/core/WebMap";
 import MapView from "@arcgis/core/views/MapView";
+import Compass from "@arcgis/core/widgets/Compass";
 import * as React from "react";
 import { Stores } from "../Stores/Stores";
 import MapStore from "./MapStore";
@@ -38,8 +39,13 @@ export default class MapController {
     this.mapView = new MapView({
       map: this.map,
       container: this.mapNode.current ?? undefined,
-      ui: { components: [] },
+      // ui: { components: [] },
     });
+
+    let compass = new Compass({
+      view: this.mapView
+    });
+    this.mapView.ui.add(compass, "top-left");
 
     // making sure that mapView is initialized
     this.mapView.when((v: MapView) => {

@@ -37,8 +37,7 @@ export default class SceneController {
     });
     this.sceneView = new SceneView({
       map: this.scene,
-      container: this.sceneNode.current ?? undefined,
-      ui: { components: [] },
+      container: this.sceneNode.current ?? undefined
     });
 
     // making sure that sceneView is initialized
