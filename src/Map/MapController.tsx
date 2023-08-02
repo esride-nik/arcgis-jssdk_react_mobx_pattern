@@ -39,7 +39,6 @@ export default class MapController {
     this.mapView = new MapView({
       map: this.map,
       container: this.mapNode.current ?? undefined,
-      // ui: { components: [] },
     });
 
     let compass = new Compass({
@@ -51,7 +50,6 @@ export default class MapController {
     this.mapView.when((v: MapView) => {
       this.mapStore.setMapView(v);
       reactiveUtils.watch(() => v.center, (value) => this.mapStore.setCenter(value));
-      reactiveUtils.watch(() => v.rotation, (value) => this.mapStore.setRotation(value));
     });
   };
 }
