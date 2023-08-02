@@ -9,7 +9,7 @@ interface MapCmpProps {}
 
 const MapCmp: React.FC<MapCmpProps> = observer((props: MapCmpProps) => {
   const mapContext = useMapContext();
-  const { mapStore, sceneStore } = useStores();
+  const { sceneStore } = useStores();
 
   // map must be initialized after first render, because we need the DOM node ref
   useEffect(mapContext.initMap, []);
@@ -17,10 +17,6 @@ const MapCmp: React.FC<MapCmpProps> = observer((props: MapCmpProps) => {
   useEffect(() => {
     mapContext.mapView.center = sceneStore.center;
   }, [sceneStore.center])
-  
-  useEffect(() => {
-    console.log("map center", mapStore.center);
-  }, [mapStore.center]);
 
   return <>
     <div ref={mapContext.mapNode} id="map" />
