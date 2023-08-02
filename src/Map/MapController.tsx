@@ -9,6 +9,9 @@ import MapStore from "./MapStore";
 import { Config } from "Config/types/config";
 import * as reactiveUtils from "@arcgis/core/core/reactiveUtils.js";
 import BasemapGallery from "@arcgis/core/widgets/BasemapGallery";
+import * as projection from "@arcgis/core/geometry/projection.js";
+import * as webMercatorUtils from "@arcgis/core/geometry/support/webMercatorUtils.js";
+import * as coordinateFormatter from "@arcgis/core/geometry/coordinateFormatter.js";
 
 export default class MapController {
   private stores!: Stores | undefined;
@@ -63,5 +66,24 @@ export default class MapController {
       this.mapStore.setMapView(v);
       reactiveUtils.watch(() => v.center, (value) => this.mapStore.setCenter(value));
     });
+
+    projection.load().then(() => {
+      const t1 = projection.getTransformation({wkid: 102329}, {wkid: 3857});
+      console.log("getTransformation 102329-3857", t1);
+
+      const g1 = projection.project({
+        "x": 32559423.695236191,
+        "y": 5934758.7624091273,
+        "spatialReference": {
+            "wkid": 102329,
+            "latestWkid": 102329
+        }
+       } as unknown as __esri.Geometry, {wkid: 3857}, t1) as __esri.Point;
+      const wgs84 = webMercatorUtils.webMercatorToGeographic(g1) as __esri.Point;
+      console.log("WGS84", wgs84, wgs84.spatialReference);
+
+      const cf = coordinateFormatter.toLatitudeLongitude(wgs84, "dd", 2);
+      console.log("cf", cf);
+    })
   };
 }
