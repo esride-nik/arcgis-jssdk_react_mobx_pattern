@@ -1,8 +1,9 @@
 #map {
+  position:relative;
   float: left;
   overflow: hidden;
   width: 50vw;
-  height: 100vh;
+  height: 95vh;
 }
 
 .cTest {

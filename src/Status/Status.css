@@ -2,8 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position:absolute;
-  height:10vh;
+  position:relative;
+  height:5vh;
   width:100vw;
   left:0vw;
   top:0vh;
