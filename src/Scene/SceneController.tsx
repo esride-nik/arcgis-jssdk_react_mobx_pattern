@@ -43,8 +43,56 @@ export default class SceneController {
       // camera: new Camera()
     });
 
+
+    const renderer = {
+      type: "simple", // autocasts as new SimpleRenderer()
+      symbol: {
+        type: "polygon-3d", // autocasts as new PolygonSymbol3D()
+        symbolLayers: [
+          {
+            type: "extrude" // autocasts as new ExtrudeSymbol3DLayer()
+          }
+        ]
+      },
+      visualVariables: [
+        {
+          type: "size",
+          field: "POPULATION",
+          stops: [
+            {
+              value: 10000,
+              size: 10,
+              label: "10,000"
+            },
+            {
+              value: 250000,
+              size: 2500,
+              label: ">250,000"
+            }
+          ]
+        },
+        {
+          type: "color",
+          field: "POPULATION",
+          stops: [
+            {
+              value: 10000,
+              color: [230, 200, 41, 0.2],
+              label: "10"
+            },
+            {
+              value: 250000,
+              color: [153, 83, 41, 0.6],
+              label: "80"
+            }
+          ]
+        }
+      ]
+    } as unknown as __esri.RendererProperties;
+
     const arr_fl = new FeatureLayer({
-      url: 'https://services.arcgis.com/d3voDfTFbHOCRwVR/ArcGIS/rest/services/arrondissements_municipaux_Paris_Lyon_Marseilles_L93/FeatureServer/0'
+      url: 'https://services.arcgis.com/d3voDfTFbHOCRwVR/ArcGIS/rest/services/arrondissements_municipaux_Paris_Lyon_Marseilles_L93/FeatureServer/0',
+      renderer: renderer
     });
     this.scene.add(arr_fl);
 
