@@ -6,6 +6,10 @@ import { useMapContext } from "../Map/useMapContext";
 import "./Status.css";
 import { useSceneContext } from "../Scene/useSceneContext";
 
+import '@esri/calcite-components/dist/components/calcite-button';
+import '@esri/calcite-components/dist/components/calcite-panel';
+import { CalciteButton, CalcitePanel } from '@esri/calcite-components-react';
+
 interface StatusCmpProps {}
 
 const StatusCmp: React.FC<StatusCmpProps> = observer(
@@ -26,10 +30,11 @@ const StatusCmp: React.FC<StatusCmpProps> = observer(
 
     return (
       <div id="status">
-        <span>{statusStore.statusMessage}</span>
-        <span>map {mapStore.center.x} / {mapStore.center.y}</span>
-        <span>scene {sceneStore.center.x} / {sceneStore.center.y}</span>
-        <button onClick={goSomewhere}>Somewhere in the middle</button>
+      <CalcitePanel heading={statusStore.statusMessage}>
+        <CalciteButton slot='header-actions-end' onClick={goSomewhere} appearance='solid'>
+        Somewhere in the middle
+        </CalciteButton>
+      </CalcitePanel>
       </div>
     );
   }
