@@ -2,6 +2,7 @@ import Map from "@arcgis/core/Map";
 import WebMap from "@arcgis/core/WebMap";
 import MapView from "@arcgis/core/views/MapView";
 import Compass from "@arcgis/core/widgets/Compass";
+import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 import * as React from "react";
 import { Stores } from "../Stores/Stores";
 import MapStore from "./MapStore";
@@ -45,6 +46,36 @@ export default class MapController {
       view: this.mapView
     });
     this.mapView.ui.add(compass, "top-left");
+
+    const renderer = {
+            "type": "simple",
+            "symbol": {
+                "type": "simple-fill",
+                "style": "solid",
+                "color": [
+                    255,
+                    255,
+                    190,
+                    0.6
+                ],
+                "outline": {
+                    "type": "simple-line",
+                    "style": "solid",
+                    "color": [
+                        255,
+                        0,
+                        0,
+                        0.8
+                    ],
+                    "width": 1
+                }
+            }
+        } as unknown as __esri.RendererProperties;
+    const arr_fl = new FeatureLayer({
+      url: 'https://services.arcgis.com/d3voDfTFbHOCRwVR/ArcGIS/rest/services/arrondissements_municipaux_Paris_Lyon_Marseilles_L93/FeatureServer/0',
+      renderer: renderer
+    });
+    this.map.add(arr_fl);
 
     // making sure that mapView is initialized
     this.mapView.when((v: MapView) => {
