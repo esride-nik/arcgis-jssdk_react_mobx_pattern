@@ -14,7 +14,7 @@ interface StatusCmpProps {}
 
 const StatusCmp: React.FC<StatusCmpProps> = observer(
   (props: StatusCmpProps) => {
-    const { statusStore, mapStore, sceneStore } = useStores();
+    const { statusStore, mapStore } = useStores();
     const mapContext = useMapContext();
     const sceneContext = useSceneContext();
 

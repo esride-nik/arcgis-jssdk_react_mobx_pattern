@@ -3,13 +3,4 @@
   justify-content: center;
   align-items: center;
   position:relative;
-  height:5vh;
-  width:100vw;
-  left:0vw;
-  top:0vh;
-  background-color:darkslategray;
-  color:aliceblue;
-}
-span {
-  padding:0px 5px 0px 5px;
 }

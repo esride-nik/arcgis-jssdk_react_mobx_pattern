@@ -6,8 +6,9 @@ import StatusCmp from "./Status/StatusCmp";
 import { SceneProvider } from "Scene/SceneProvider";
 
 import '@esri/calcite-components/dist/components/calcite-shell';
+import '@esri/calcite-components/dist/components/calcite-panel';
 import '@esri/calcite-components/dist/components/calcite-shell-panel';
-import { CalciteShell, CalciteShellPanel } from '@esri/calcite-components-react';
+import { CalciteShell, CalcitePanel, CalciteShellPanel } from '@esri/calcite-components-react';
 
 function App() {
   return (
@@ -18,7 +19,9 @@ function App() {
         <CalciteShellPanel slot="panel-start" position="start" resizable>
           <MapCmp></MapCmp>
         </CalciteShellPanel>
-        <SceneCmp></SceneCmp>
+        <CalcitePanel>
+          <SceneCmp></SceneCmp>
+        </CalcitePanel>
       </SceneProvider>
       </MapProvider>
     </CalciteShell>
