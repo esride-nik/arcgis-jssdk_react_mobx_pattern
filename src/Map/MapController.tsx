@@ -43,44 +43,50 @@ export default class MapController {
     });
 
     let compass = new Compass({
-      view: this.mapView
+      view: this.mapView,
     });
     this.mapView.ui.add(compass, "top-left");
 
     const renderer = {
-            "type": "simple",
-            "symbol": {
-                "type": "simple-fill",
-                "style": "solid",
-                "color": [
-                    255,
-                    255,
-                    190,
-                    0.6
-                ],
-                "outline": {
-                    "type": "simple-line",
-                    "style": "solid",
-                    "color": [
-                        255,
-                        0,
-                        0,
-                        0.8
-                    ],
-                    "width": 1
-                }
-            }
-        } as unknown as __esri.RendererProperties;
+      type: "simple",
+      symbol: {
+        type: "simple-fill", 
+        outline: {
+          color: [0, 0, 0, 0.3]
+        }
+      },
+      visualVariables: [
+        {
+          type: "color",
+          field: "POPULATION",
+          stops: [
+            {
+              value: 10000,
+              color: [230, 200, 41, 0.2],
+              label: "10000",
+            },
+            {
+              value: 250000,
+              color: [153, 83, 41, 0.6],
+              label: "250000",
+            },
+          ],
+        },
+      ],
+    } as unknown as __esri.RendererProperties;
     const arr_fl = new FeatureLayer({
-      url: 'https://services.arcgis.com/d3voDfTFbHOCRwVR/ArcGIS/rest/services/arrondissements_municipaux_Paris_Lyon_Marseilles_L93/FeatureServer/0',
-      renderer: renderer
+      url: "https://services.arcgis.com/d3voDfTFbHOCRwVR/ArcGIS/rest/services/arrondissements_municipaux_Paris_Lyon_Marseilles_L93/FeatureServer/0",
+      renderer: renderer,
     });
     this.map.add(arr_fl);
 
     // making sure that mapView is initialized
     this.mapView.when((v: MapView) => {
       this.mapStore.setMapView(v);
-      reactiveUtils.watch(() => v.center, (value) => this.mapStore.setCenter(value));
+      reactiveUtils.watch(
+        () => v.center,
+        (value) => this.mapStore.setCenter(value)
+      );
     });
   };
 }

@@ -45,32 +45,16 @@ export default class SceneController {
 
 
     const renderer = {
-      type: "simple", // autocasts as new SimpleRenderer()
+      type: "simple",
       symbol: {
-        type: "polygon-3d", // autocasts as new PolygonSymbol3D()
+        type: "polygon-3d",
         symbolLayers: [
           {
-            type: "extrude" // autocasts as new ExtrudeSymbol3DLayer()
+            type: "fill"
           }
         ]
       },
       visualVariables: [
-        {
-          type: "size",
-          field: "POPULATION",
-          stops: [
-            {
-              value: 10000,
-              size: 10,
-              label: "10,000"
-            },
-            {
-              value: 250000,
-              size: 2500,
-              label: ">250,000"
-            }
-          ]
-        },
         {
           type: "color",
           field: "POPULATION",
@@ -78,12 +62,12 @@ export default class SceneController {
             {
               value: 10000,
               color: [230, 200, 41, 0.2],
-              label: "10"
+              label: "10000"
             },
             {
               value: 250000,
               color: [153, 83, 41, 0.6],
-              label: "80"
+              label: "250000"
             }
           ]
         }
