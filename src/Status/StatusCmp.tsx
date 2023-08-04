@@ -8,7 +8,9 @@ import { useSceneContext } from "../Scene/useSceneContext";
 
 import '@esri/calcite-components/dist/components/calcite-button';
 import '@esri/calcite-components/dist/components/calcite-panel';
-import { CalciteButton, CalcitePanel } from '@esri/calcite-components-react';
+import '@esri/calcite-components/dist/components/calcite-chip';
+import '@esri/calcite-components/dist/components/calcite-avatar';
+import { CalciteButton, CalcitePanel,CalciteChip, CalciteAvatar } from '@esri/calcite-components-react';
 
 interface StatusCmpProps {}
 
@@ -32,8 +34,12 @@ const StatusCmp: React.FC<StatusCmpProps> = observer(
       <div id="status">
       <CalcitePanel heading={statusStore.statusMessage}>
         <CalciteButton slot='header-actions-end' onClick={goSomewhere} appearance='solid'>
-        Somewhere in the middle
+          Somewhere in the middle
         </CalciteButton>
+        <CalciteChip slot='header-actions-start' value="xy" appearance="outline-fill" className='avatarXy'>
+          <CalciteAvatar slot="image" full-name="x y"></CalciteAvatar>
+            {mapStore.center.x.toFixed(2)} / {mapStore.center.y.toFixed(2)} 
+        </CalciteChip>
       </CalcitePanel>
       </div>
     );
