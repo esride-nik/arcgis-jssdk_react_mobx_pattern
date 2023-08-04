@@ -2,7 +2,6 @@ import Map from "@arcgis/core/Map";
 import WebScene from "@arcgis/core/WebScene";
 import SceneView from "@arcgis/core/views/SceneView";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
-import Camera from "@arcgis/core/Camera";
 import * as React from "react";
 import { Stores } from "../Stores/Stores";
 import SceneStore from "./SceneStore";
@@ -13,6 +12,7 @@ export default class SceneController {
   private stores!: Stores | undefined;
   private sceneStore!: SceneStore;
   private config!: Config;
+  private fl_arr!: FeatureLayer;
 
   // setStores needs to be called with a valid object before the rest of the class works
   setStores = (stores: Stores): void => {
@@ -40,7 +40,6 @@ export default class SceneController {
     this.sceneView = new SceneView({
       map: this.scene,
       container: this.sceneNode.current ?? undefined,
-      // camera: new Camera()
     });
 
 

@@ -3,11 +3,13 @@ import WebMap from "@arcgis/core/WebMap";
 import MapView from "@arcgis/core/views/MapView";
 import Compass from "@arcgis/core/widgets/Compass";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
+import Expand from "@arcgis/core/widgets/Expand";
 import * as React from "react";
 import { Stores } from "../Stores/Stores";
 import MapStore from "./MapStore";
 import { Config } from "Config/types/config";
 import * as reactiveUtils from "@arcgis/core/core/reactiveUtils.js";
+import BasemapGallery from "@arcgis/core/widgets/BasemapGallery";
 
 export default class MapController {
   private stores!: Stores | undefined;
@@ -42,11 +44,6 @@ export default class MapController {
       container: this.mapNode.current ?? undefined,
     });
 
-    let compass = new Compass({
-      view: this.mapView,
-    });
-    this.mapView.ui.add(compass, "top-left");
-
     const renderer = {
       type: "simple",
       symbol: {
@@ -79,6 +76,22 @@ export default class MapController {
       renderer: renderer,
     });
     this.map.add(arr_fl);
+
+    
+    let compass = new Compass({
+      view: this.mapView,
+    });
+    this.mapView.ui.add(compass, "top-left");
+    
+    const basemapGallery = new BasemapGallery({
+      view: this.mapView
+    });
+    const basemapGalleryExpand = new Expand({
+      expandIcon: "basemap",  // see https://developers.arcgis.com/calcite-design-system/icons/
+      view: this.mapView,
+      content: basemapGallery
+    } as unknown as __esri.ExpandProperties);
+    this.mapView.ui.add(basemapGalleryExpand, "bottom-right");
 
     // making sure that mapView is initialized
     this.mapView.when((v: MapView) => {
