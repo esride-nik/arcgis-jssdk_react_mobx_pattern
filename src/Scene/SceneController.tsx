@@ -12,7 +12,6 @@ export default class SceneController {
   private stores!: Stores | undefined;
   private sceneStore!: SceneStore;
   private config!: Config;
-  private fl_arr!: FeatureLayer;
 
   // setStores needs to be called with a valid object before the rest of the class works
   setStores = (stores: Stores): void => {
