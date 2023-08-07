@@ -10,6 +10,7 @@ const SceneCmp: React.FC<SceneCmpProps> = observer((props: SceneCmpProps) => {
   const sceneContext = useSceneContext();
 
   // scene must be initialized after first render, because we need the DOM node ref
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(sceneContext.initScene, []);
 
   return <div ref={sceneContext.sceneNode} id="scene" />;
