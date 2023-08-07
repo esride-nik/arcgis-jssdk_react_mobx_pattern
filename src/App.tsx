@@ -11,6 +11,7 @@ import '@esri/calcite-components/dist/components/calcite-shell-panel';
 import { CalciteShell, CalcitePanel, CalciteShellPanel } from '@esri/calcite-components-react';
 
 function App() {
+  console.log('app');
   return (
     <CalciteShell className="App">
       <MapProvider>
