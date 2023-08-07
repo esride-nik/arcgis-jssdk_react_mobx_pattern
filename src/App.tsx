@@ -5,27 +5,20 @@ import { MapProvider } from "./Map/MapProvider";
 import StatusCmp from "./Status/StatusCmp";
 import { SceneProvider } from "Scene/SceneProvider";
 
-import '@esri/calcite-components/dist/components/calcite-shell';
-import '@esri/calcite-components/dist/components/calcite-panel';
-import '@esri/calcite-components/dist/components/calcite-shell-panel';
-import { CalciteShell, CalcitePanel, CalciteShellPanel } from '@esri/calcite-components-react';
-
 function App() {
   console.log('app');
   return (
-    <CalciteShell className="App">
       <MapProvider>
       <SceneProvider>
         <div slot="header"><StatusCmp></StatusCmp></div>
-        <CalciteShellPanel slot="panel-start" position="start" resizable>
+        <div slot="panel-start">
           <MapCmp></MapCmp>
-        </CalciteShellPanel>
-        <CalcitePanel>
+        </div>
+        <div>
           <SceneCmp></SceneCmp>
-        </CalcitePanel>
+        </div>
       </SceneProvider>
       </MapProvider>
-    </CalciteShell>
   );
 }
 
