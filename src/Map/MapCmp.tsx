@@ -12,6 +12,7 @@ const MapCmp: React.FC<MapCmpProps> = observer((props: MapCmpProps) => {
   const { sceneStore } = useStores();
 
   // map must be initialized after first render, because we need the DOM node ref
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(mapContext.initMap, []);
 
   useEffect(() => {
