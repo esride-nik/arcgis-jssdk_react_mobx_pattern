@@ -38,6 +38,7 @@ class SceneStore {
   };
   setCamera = (camera: Camera): void => {
     this.camera = camera;
+    console.log(JSON.stringify(camera))
   };
 }
 

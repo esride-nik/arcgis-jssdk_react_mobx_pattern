@@ -26,7 +26,7 @@ const StatusCmp: React.FC<StatusCmpProps> = observer(
     };
 
     const changeSceneRenderer = (v: any) => {
-      console.log("radio btn", v.target.value);
+      sceneContext.setSceneRenderer(v.target.value);
     };
 
     useEffect(() => {
@@ -43,7 +43,7 @@ const StatusCmp: React.FC<StatusCmpProps> = observer(
           <button slot="header-actions-end" onClick={goSomewhere}>
             Somewhere in the middle
           </button>
-          <fieldset>
+          <div>
             <input
               type="radio"
               name="scenerenderer"
@@ -61,8 +61,8 @@ const StatusCmp: React.FC<StatusCmpProps> = observer(
               onClick={changeSceneRenderer}
             />
             <label>levels</label>
-          </fieldset>
-          {mapStore.center.x.toFixed(2)} / {mapStore.center.y.toFixed(2)}
+          </div>
+          <div>{mapStore.center.x.toFixed(2)} / {mapStore.center.y.toFixed(2)}</div>
         </div>
       </div>
     );

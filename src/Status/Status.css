@@ -3,7 +3,12 @@
   justify-content: center;
   align-items: center;
   position:relative;
+  height:5vh;
 }
 .avatarXy {
   margin:10px;
+}
+#status div {
+  display: inline-block;
+  margin:5px;
 }
