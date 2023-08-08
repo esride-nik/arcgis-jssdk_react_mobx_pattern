@@ -68,6 +68,8 @@ export default class SceneController {
 
     this.addSceneLayer();
 
+    this.addPointCloudLayer();
+
     // making sure that sceneView is initialized
     this.sceneView.when((v: SceneView) => {
       const searchWidget = new Search({
@@ -223,6 +225,46 @@ export default class SceneController {
     //     id: "fc3f4a4919394808830cd11df4631a54"
     //   }
     // });
+    pcl.when(async (p: PointCloudLayer) => { 
+      console.log('pcl', p);
+      try {
+        const att = await p.fetchAttributionData(); 
+        console.log('pcl att', att)
+      } catch (e) {
+        console.error('pcl att error', e);
+      }
+
+      pcl.fields.forEach((field: __esri.Field) => {
+        console.log(`pcl field ${field.name} domain: ${pcl.getFieldDomain(field.name)}`);
+      });
+    })
+    this.scene.add(pcl);
+  }
+
+  private addPointCloudLayer() {
+    const pcl = new PointCloudLayer({
+      // url: "https://tiles.arcgis.com/tiles/nSZVuSZjHpEZZbRo/arcgis/rest/services/AHN4_Zuid_Holland_Zuid/SceneServer/layers/0/"
+      // url: "https://tiles.arcgis.com/tiles/DyhUJeXeQjQXXSX0/arcgis/rest/services/Aggertalsp3d/SceneServer/layers/0",
+      url: "https://tiles.arcgis.com/tiles/V6ZHFr6zdgNZuVG0/arcgis/rest/services/BARNEGAT_BAY_LiDAR_UTM/SceneServer"
+    });
+    // const pcl = new PointCloudLayer({
+    //   portalItem: {
+    //     id: "fc3f4a4919394808830cd11df4631a54"
+    //   }
+    // });
+    pcl.when(async (p: PointCloudLayer) => { 
+      console.log('pcl', p);
+      try {
+        const att = await p.fetchAttributionData(); 
+        console.log('pcl att', att)
+      } catch (e) {
+        console.error('pcl att error', e);
+      }
+
+      pcl.fields.forEach((field: __esri.Field) => {
+        console.log(`pcl field ${field.name} domain: ${pcl.getFieldDomain(field.name)}`);
+      });
+    })
     this.scene.add(pcl);
   }
 
