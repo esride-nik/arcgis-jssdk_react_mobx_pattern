@@ -3,6 +3,7 @@ import WebScene from "@arcgis/core/WebScene";
 import SceneView from "@arcgis/core/views/SceneView";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 import SceneLayer from "@arcgis/core/layers/SceneLayer";
+import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
 import PointCloudLayer from "@arcgis/core/layers/PointCloudLayer";
 import * as React from "react";
 import { Stores } from "../Stores/Stores";
@@ -13,6 +14,7 @@ import Search from "@arcgis/core/widgets/Search";
 import LayerList from "@arcgis/core/widgets/LayerList";
 import Expand from "@arcgis/core/widgets/Expand";
 import Home from "@arcgis/core/widgets/Home";
+import Sketch from "@arcgis/core/widgets/Sketch";
 
 export default class SceneController {
   private stores!: Stores | undefined;
@@ -66,7 +68,7 @@ export default class SceneController {
 
     this.addFeatureLayer();
 
-    this.addSceneLayer();
+    // this.addSceneLayer();
 
     this.addPointCloudLayer();
 
@@ -87,7 +89,26 @@ export default class SceneController {
       const homeWidget = new Home({
         view: v
       });
-      v.ui.add([homeWidget, layerListExpand, searchWidget], {
+      const sketchLayer = new GraphicsLayer({id: 'sketchLayer'})
+      v.map.add(sketchLayer);
+      const sketch = new Sketch({
+        view: v,
+        layer: sketchLayer
+      });
+      sketch.on('create', async (evt: __esri.SketchCreateEvent) => {
+        if (evt.state === 'complete' && this.buildingLayer !== undefined) {
+          try {
+            // query only available when sceneLayer has associatedLayer :/
+            const slQuery = this.buildingLayer.createQuery();
+            slQuery.geometry = evt.graphic.geometry;
+            const slQueryRes = await this.buildingLayer.queryFeatures(slQuery);
+            console.log('slQueryRes', slQueryRes);
+          } catch (e) {
+            console.error('buildingLayer query', e);
+          }
+        }
+      })
+      v.ui.add([homeWidget, layerListExpand, searchWidget, sketch], {
         position: "top-left",
         index: 0
       });
@@ -110,6 +131,7 @@ export default class SceneController {
         (s: __esri.Layer) => s.title === "OpenStreetMap 3D Buildings"
       );
       this.buildingLayer = sceneLayers.getItemAt(0) as SceneLayer;
+      console.log('sceneLayer building', this.buildingLayer);
       this.setSceneRenderer();
     });
   };
