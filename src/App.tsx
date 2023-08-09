@@ -10,6 +10,14 @@ import '@esri/calcite-components/dist/components/calcite-panel';
 import '@esri/calcite-components/dist/components/calcite-shell-panel';
 import { CalciteShell, CalcitePanel, CalciteShellPanel } from '@esri/calcite-components-react';
 
+/*
+Adam Tirella 18:28
+Niklas Köhn (Guest) - Shell Panel css width: https://developers.arcgis.com/calcite-design-system/components/shell-panel/#styles
+codepen: https://codepen.io/mac_and_cheese/pen/NWEVwEa?editors=1000
+
+ */
+
+
 function App() {
   console.log('app');
   return (
