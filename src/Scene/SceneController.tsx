@@ -3,8 +3,6 @@ import WebScene from "@arcgis/core/WebScene";
 import SceneView from "@arcgis/core/views/SceneView";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 import SceneLayer from "@arcgis/core/layers/SceneLayer";
-import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
-import PointCloudLayer from "@arcgis/core/layers/PointCloudLayer";
 import * as React from "react";
 import { Stores } from "../Stores/Stores";
 import SceneStore from "./SceneStore";
@@ -14,7 +12,6 @@ import Search from "@arcgis/core/widgets/Search";
 import LayerList from "@arcgis/core/widgets/LayerList";
 import Expand from "@arcgis/core/widgets/Expand";
 import Home from "@arcgis/core/widgets/Home";
-import Sketch from "@arcgis/core/widgets/Sketch";
 
 export default class SceneController {
   private stores!: Stores | undefined;
@@ -47,30 +44,13 @@ export default class SceneController {
     this.sceneView = new SceneView({
       map: this.scene,
       container: this.sceneNode.current ?? undefined,
-      // camera: {"position":{"spatialReference":{"wkid":102100},"x":256022.17269005647,"y":6253215.566099106,"z":251.75521506089717},"heading":295.1691905190077,"tilt":77.58617215775432},
-      // camera: {"position":{"spatialReference":{"wkid":102100},"x":849718.7152143582,"y":6627044.618168852,"z":394.33555155806243},"heading":352.07813161974536,"tilt":72.22260208594194},
-      camera: {
-        heading: 210,
-        tilt: 78,
-        position: {
-          x: -8249335,
-          y: 4832005,
-          z: 50.7,
-          spatialReference: {
-            wkid: 3857
-          }
-        }
-      },
+      camera: {"position":{"spatialReference":{"wkid":102100},"x":256022.17269005647,"y":6253215.566099106,"z":251.75521506089717},"heading":295.1691905190077,"tilt":77.58617215775432},
       popup: {
         defaultPopupTemplateEnabled: true // activate popup with defaut template
       }
     });
 
     this.addFeatureLayer();
-
-    // this.addSceneLayer();
-
-    this.addPointCloudLayer();
 
     // making sure that sceneView is initialized
     this.sceneView.when((v: SceneView) => {
@@ -89,26 +69,7 @@ export default class SceneController {
       const homeWidget = new Home({
         view: v
       });
-      const sketchLayer = new GraphicsLayer({id: 'sketchLayer'})
-      v.map.add(sketchLayer);
-      const sketch = new Sketch({
-        view: v,
-        layer: sketchLayer
-      });
-      sketch.on('create', async (evt: __esri.SketchCreateEvent) => {
-        if (evt.state === 'complete' && this.buildingLayer !== undefined) {
-          try {
-            // query only available when sceneLayer has associatedLayer :/
-            const slQuery = this.buildingLayer.createQuery();
-            slQuery.geometry = evt.graphic.geometry;
-            const slQueryRes = await this.buildingLayer.queryFeatures(slQuery);
-            console.log('slQueryRes', slQueryRes);
-          } catch (e) {
-            console.error('buildingLayer query', e);
-          }
-        }
-      })
-      v.ui.add([homeWidget, layerListExpand, searchWidget, sketch], {
+      v.ui.add([homeWidget, layerListExpand, searchWidget], {
         position: "top-left",
         index: 0
       });
@@ -205,90 +166,6 @@ export default class SceneController {
       this.buildingLayer.renderer = renderer;
     }
   };
-
-  private addSceneLayer() {
-    // const renderer = {
-    //   type: "simple",
-    //   symbol: {
-    //     type: "polygon-3d",
-    //     symbolLayers: [
-    //       {
-    //         type: "fill",
-    //       },
-    //     ],
-    //   },
-    //   visualVariables: [
-    //     {
-    //       type: "color",
-    //       field: "POPULATION",
-    //       stops: [
-    //         {
-    //           value: 10000,
-    //           color: [230, 200, 41, 0.2],
-    //           label: "10000",
-    //         },
-    //         {
-    //           value: 250000,
-    //           color: [153, 83, 41, 0.6],
-    //           label: "250000",
-    //         },
-    //       ],
-    //     },
-    //   ],
-    // } as unknown as __esri.RendererProperties;
-
-    const pcl = new PointCloudLayer({
-      // url: "https://tiles.arcgis.com/tiles/nSZVuSZjHpEZZbRo/arcgis/rest/services/AHN4_Zuid_Holland_Zuid/SceneServer/layers/0/"
-      // url: "https://tiles.arcgis.com/tiles/DyhUJeXeQjQXXSX0/arcgis/rest/services/Aggertalsp3d/SceneServer/layers/0",
-      url: "https://tiles.arcgis.com/tiles/V6ZHFr6zdgNZuVG0/arcgis/rest/services/BARNEGAT_BAY_LiDAR_UTM/SceneServer"
-    });
-    // const pcl = new PointCloudLayer({
-    //   portalItem: {
-    //     id: "fc3f4a4919394808830cd11df4631a54"
-    //   }
-    // });
-    pcl.when(async (p: PointCloudLayer) => { 
-      console.log('pcl', p);
-      try {
-        const att = await p.fetchAttributionData(); 
-        console.log('pcl att', att)
-      } catch (e) {
-        console.error('pcl att error', e);
-      }
-
-      pcl.fields.forEach((field: __esri.Field) => {
-        console.log(`pcl field ${field.name} domain: ${pcl.getFieldDomain(field.name)}`);
-      });
-    })
-    this.scene.add(pcl);
-  }
-
-  private addPointCloudLayer() {
-    const pcl = new PointCloudLayer({
-      // url: "https://tiles.arcgis.com/tiles/nSZVuSZjHpEZZbRo/arcgis/rest/services/AHN4_Zuid_Holland_Zuid/SceneServer/layers/0/"
-      // url: "https://tiles.arcgis.com/tiles/DyhUJeXeQjQXXSX0/arcgis/rest/services/Aggertalsp3d/SceneServer/layers/0",
-      url: "https://tiles.arcgis.com/tiles/V6ZHFr6zdgNZuVG0/arcgis/rest/services/BARNEGAT_BAY_LiDAR_UTM/SceneServer"
-    });
-    // const pcl = new PointCloudLayer({
-    //   portalItem: {
-    //     id: "fc3f4a4919394808830cd11df4631a54"
-    //   }
-    // });
-    pcl.when(async (p: PointCloudLayer) => { 
-      console.log('pcl', p);
-      try {
-        const att = await p.fetchAttributionData(); 
-        console.log('pcl att', att)
-      } catch (e) {
-        console.error('pcl att error', e);
-      }
-
-      pcl.fields.forEach((field: __esri.Field) => {
-        console.log(`pcl field ${field.name} domain: ${pcl.getFieldDomain(field.name)}`);
-      });
-    })
-    this.scene.add(pcl);
-  }
 
   private addFeatureLayer() {
     const renderer = {
