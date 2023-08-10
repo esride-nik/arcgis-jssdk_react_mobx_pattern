@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@arcgis/core": "^4.26.5",
+    "@arcgis/core": "^4.27.6",
     "@esri/calcite-components-react": "^1.4.3",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",

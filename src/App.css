@@ -1,3 +1,9 @@
+calcite-shell-panel {
+  --calcite-shell-panel-min-width: 20vw;
+  --calcite-shell-panel-max-width: 80vw;
+  --calcite-shell-panel-width: 50vw;
+}
+
 .App {
   text-align: center;
   overflow:hidden;
