@@ -14,17 +14,6 @@ import { setAssetPath } from "@esri/calcite-components/dist/components";
 
 setAssetPath("https://unpkg.com/@esri/calcite-components/dist/calcite/assets");
 
-/*
-resizable feature:
-
-Adam Tirella 18:28
-Niklas Köhn (Guest) - Shell Panel css width: https://developers.arcgis.com/calcite-design-system/components/shell-panel/#styles
-codepen: https://codepen.io/mac_and_cheese/pen/NWEVwEa?editors=1000
-
-
- */
-
-
 function App() {
   console.log('app');
   return (
