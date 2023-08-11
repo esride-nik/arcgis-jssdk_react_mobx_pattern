@@ -51,9 +51,9 @@ const StatusCmp: React.FC<StatusCmpProps> = observer(
         <CalciteButton slot='header-actions-end' onClick={goSomewhere} appearance='solid'>
           Somewhere in the middle
         </CalciteButton>
-        <CalciteRadioButtonGroup slot='header-actions-end' name='Render scene by' onChange={changeSceneRenderer}>
+        <CalciteRadioButtonGroup slot='header-actions-end' name='Render scene by' onClick={changeSceneRenderer} layout='horizontal' id='changeRendererRadio'>
           <CalciteLabel layout='inline'>
-            <CalciteRadioButton value="height"></CalciteRadioButton>
+            <CalciteRadioButton value="height" checked></CalciteRadioButton>
             Height
           </CalciteLabel>
           <CalciteLabel layout='inline'>
