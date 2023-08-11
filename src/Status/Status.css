@@ -3,7 +3,19 @@
   justify-content: center;
   align-items: center;
   position:relative;
+  height:6vh;
 }
 .avatarXy {
   margin:10px;
+}
+#status div {
+  display: inline-block;
+  margin:5px;
+}
+
+#changeRendererRadio {
+  margin: 0px 10px 0px 10px;
+}
+.container {
+  margin-bottom: 0px;
 }

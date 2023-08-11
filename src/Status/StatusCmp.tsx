@@ -24,17 +24,25 @@ const StatusCmp: React.FC<StatusCmpProps> = observer(
     const sceneContext = useSceneContext();
 
     const goSomewhere = () => {
-      mapContext.mapView.goTo({ target: [0,0], zoom: 5 }, {animate: true, duration: 3000})
-      sceneContext.sceneView.goTo({ target: [0,0], zoom: 5 }, {animate: true, duration: 3000})
-    }
+      mapContext.mapView.goTo(
+        { target: [0, 0], zoom: 5 },
+        { animate: true, duration: 3000 }
+      );
+      sceneContext.sceneView.goTo(
+        { target: [0, 0], zoom: 5 },
+        { animate: true, duration: 3000 }
+      );
+    };
 
     const changeSceneRenderer = (v: any) => {
-      console.log('radio btn', v);
-    } 
+      sceneContext.setSceneRenderer(v.target.value);
+    };
 
     useEffect(() => {
       statusStore.setChangeCounter(statusStore.changeCounter + 1);
-      statusStore.setStatusMessage(`Center changed ${statusStore.changeCounter} times.`);
+      statusStore.setStatusMessage(
+        `Center changed ${statusStore.changeCounter} times.`
+      );
     }, [statusStore, mapStore.center]);
 
     return (
@@ -43,9 +51,9 @@ const StatusCmp: React.FC<StatusCmpProps> = observer(
         <CalciteButton slot='header-actions-end' onClick={goSomewhere} appearance='solid'>
           Somewhere in the middle
         </CalciteButton>
-        <CalciteRadioButtonGroup slot='header-actions-end' name='Render scene by' onChange={changeSceneRenderer}>
+        <CalciteRadioButtonGroup slot='header-actions-end' name='Render scene by' onClick={changeSceneRenderer} layout='horizontal' id='changeRendererRadio'>
           <CalciteLabel layout='inline'>
-            <CalciteRadioButton value="height"></CalciteRadioButton>
+            <CalciteRadioButton value="height" checked></CalciteRadioButton>
             Height
           </CalciteLabel>
           <CalciteLabel layout='inline'>

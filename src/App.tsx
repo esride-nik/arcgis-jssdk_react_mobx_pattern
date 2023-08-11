@@ -15,7 +15,6 @@ import { setAssetPath } from "@esri/calcite-components/dist/components";
 setAssetPath("https://unpkg.com/@esri/calcite-components/dist/calcite/assets");
 
 function App() {
-  console.log('app');
   return (
     <CalciteShell className="App">
       <MapProvider>

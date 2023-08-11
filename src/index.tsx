@@ -9,8 +9,6 @@ let configuration: any = undefined;
 (async () => {
   configuration = await getConfiguration();
   
-  console.log('index');
-
   const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
   );
