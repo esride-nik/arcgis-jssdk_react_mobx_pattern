@@ -2,8 +2,7 @@
   position:relative;
   float: left;
   overflow: hidden;
-  height:95vh;
-  width:30vw;
+  height:100vw;
 }
 
 .cTest {

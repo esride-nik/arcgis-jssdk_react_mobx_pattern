@@ -92,7 +92,6 @@ export default class SceneController {
         (s: __esri.Layer) => s.title === "OpenStreetMap 3D Buildings"
       );
       this.buildingLayer = sceneLayers.getItemAt(0) as SceneLayer;
-      console.log('sceneLayer building', this.buildingLayer);
       this.setSceneRenderer();
     });
   };
