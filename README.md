@@ -1,10 +1,5 @@
 # Minimalistic ArcGIS Maps SDK for JavaScript with React
 
-## This branch
-
-Enhanced with demo functionality in customer workshops.
-
-
 ## The template
 
 There is a basic difference between the class-based Esri Map and the component-based UI framework React.
