@@ -1,4 +1,4 @@
-# Minimalistic ArcGIS JSAPI Map with React
+# Minimalistic ArcGIS Maps SDK for JavaScript with React
 
 ## This branch
 
