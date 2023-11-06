@@ -1,4 +1,4 @@
-# Minimalistic ArcGIS Maps SDK for JavaScript with React
+# Minimalistic ArcGIS Maps SDK for JavaScript with React and MobX
 
 ## The template
 
