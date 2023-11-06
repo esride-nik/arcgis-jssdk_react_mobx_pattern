@@ -8,7 +8,7 @@ import { getConfiguration } from "./Config/configuration";
 let configuration: any = undefined;
 (async () => {
   configuration = await getConfiguration();
-
+  
   const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
   );

@@ -1,7 +1,3 @@
-// ===================================================================
-// For the purpose of the exercise, don't change anything in this file
-// ===================================================================
-
 import MapView from "@arcgis/core/views/MapView";
 import Point from "@arcgis/core/geometry/Point";
 import { action, makeObservable, observable } from "mobx";

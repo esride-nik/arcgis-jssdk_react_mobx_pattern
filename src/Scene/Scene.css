@@ -1,10 +1,5 @@
-#map {
+#scene {
   position:relative;
-  float: left;
   overflow: hidden;
   height:100vw;
-}
-
-.cTest {
-  z-index: 99;
 }

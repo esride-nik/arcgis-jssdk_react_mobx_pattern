@@ -2,14 +2,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position:absolute;
-  height:10vh;
-  width:100vw;
-  left:0vw;
-  top:0vh;
-  background-color:darkslategray;
-  color:aliceblue;
+  position:relative;
+  height:6vh;
 }
-span {
-  padding:0px 5px 0px 5px;
+.avatarXy {
+  margin:10px;
+}
+#status div {
+  display: inline-block;
+  margin:5px;
+}
+
+#changeRendererRadio {
+  margin: 0px 10px 0px 10px;
+}
+.container {
+  margin-bottom: 0px;
 }

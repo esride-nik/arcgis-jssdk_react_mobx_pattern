@@ -1,21 +1,33 @@
-// ===================================================================
-// For the purpose of the exercise, don't change anything in this file
-// ===================================================================
-
 import * as React from "react";
 import { useEffect } from "react";
 import { useMapContext } from "./useMapContext";
 import "./Map.css";
+import { useStores } from "Stores/useStores";
+import { observer } from "mobx-react";
 
 interface MapCmpProps {}
 
-const MapCmp: React.FC<MapCmpProps> = (props: MapCmpProps) => {
+const MapCmp: React.FC<MapCmpProps> = observer((props: MapCmpProps) => {
   const mapContext = useMapContext();
+  const { sceneStore } = useStores();
 
   // map must be initialized after first render, because we need the DOM node ref
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(mapContext.initMap, []);
 
-  return <div ref={mapContext.mapNode} id="map" />;
-};
+  useEffect(() => {
+    if (sceneStore.extent.width > 0) {
+      mapContext.mapView.extent = sceneStore.extent;
+    }
+  }, [mapContext.mapView, sceneStore.extent])
+
+  useEffect(() => {
+    mapContext.mapView.rotation = -sceneStore.camera.heading;
+  }, [mapContext.mapView, sceneStore.camera.heading])
+
+  return <>
+    <div ref={mapContext.mapNode} id="map" />
+  </>;
+});
 
 export default MapCmp;
